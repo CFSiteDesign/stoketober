@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Montserrat", "system-ui", "sans-serif"],
+        graffiti: ["'Sedgwick Ave Display'", "Montserrat", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

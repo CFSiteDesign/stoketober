@@ -4,91 +4,160 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Stoketoberfest poster palette */
+    --orange: 21 94% 48%;        /* #ed5607 */
+    --orange-deep: 18 90% 40%;   /* darker stroke / shadow */
+    --cream: 39 100% 73%;        /* #ffd077 */
+    --cream-light: 39 100% 84%;
+    --sky: 226 49% 35%;          /* #2d4284 */
+    --water: 178 100% 82%;       /* #a2fffb */
+    --ink: 222 30% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: var(--sky);
+    --foreground: 0 0% 100%;
+    --card: var(--cream);
+    --card-foreground: var(--orange);
+    --popover: var(--cream);
+    --popover-foreground: var(--ink);
+    --primary: var(--orange);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--cream);
+    --secondary-foreground: var(--orange);
+    --muted: 39 60% 90%;
+    --muted-foreground: 20 30% 35%;
+    --accent: var(--water);
+    --accent-foreground: var(--ink);
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--orange);
+    --input: var(--orange);
+    --ring: var(--orange);
+    --radius: 1.5rem;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html {
+    -webkit-text-size-adjust: 100%;
   }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-weight: 700;
+  }
+
+  input,
+  button {
+    font: inherit;
+  }
+}
+
+@layer components {
+  /* Halftone photo backdrop, like the poster */
+  .halftone-bg {
+    background-image: url("/bg.jpg");
+    background-size: cover;
+    background-position: center 35%;
+    background-attachment: fixed;
+  }
+  @media (max-width: 767px) {
+    .halftone-bg {
+      background-attachment: scroll;
+      background-position: 78% center;
+    }
+  }
+  /* Cream speech-bubble panel with the double orange stroke */
+  .bubble {
+    position: relative;
+    background: hsl(var(--cream));
+    color: hsl(var(--orange));
+    border: 5px solid hsl(var(--orange));
+    border-radius: 1.75rem;
+    box-shadow:
+      0 0 0 5px hsl(var(--cream)),
+      0 0 0 9px hsl(var(--orange)),
+      10px 12px 0 9px rgba(120, 40, 0, 0.35);
+  }
+  .bubble-tail::after {
+    content: "";
+    position: absolute;
+    left: 14%;
+    bottom: -44px;
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 34px solid transparent;
+    border-top: 48px solid hsl(var(--orange));
+    transform: skewX(-18deg);
+  }
+  .bubble-tail::before {
+    content: "";
+    position: absolute;
+    left: calc(14% + 8px);
+    bottom: -28px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 22px solid transparent;
+    border-top: 32px solid hsl(var(--cream));
+    transform: skewX(-18deg);
+    z-index: 1;
+  }
+
+  .poster-heading {
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .graffiti {
+    font-family: "Sedgwick Ave Display", "Montserrat", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border-4 border-[hsl(var(--orange))] bg-white px-5 py-4 text-[16px] font-bold text-[hsl(var(--ink))] placeholder:text-[hsl(var(--ink))]/45 outline-none transition;
+  }
+  .field:focus-visible {
+    box-shadow: 0 0 0 4px hsl(var(--cream)), 0 0 0 8px hsl(var(--orange));
+  }
+  .field[aria-invalid="true"] {
+    border-color: hsl(var(--destructive));
+  }
+
+  .btn-poster {
+    @apply relative inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-4 text-lg font-black uppercase tracking-wide text-white transition;
+    background: hsl(var(--orange));
+    border: 4px solid hsl(var(--orange-deep));
+    box-shadow: 6px 6px 0 0 hsl(var(--orange-deep));
+  }
+  .btn-poster:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 0 hsl(var(--orange-deep));
+  }
+  .btn-poster:active:not(:disabled) {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 0 hsl(var(--orange-deep));
+  }
+  .btn-poster:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
+
+@keyframes bolt-wiggle {
+  0%, 100% { transform: rotate(var(--r, 0deg)) translateY(0); }
+  50% { transform: rotate(calc(var(--r, 0deg) + 4deg)) translateY(-6px); }
+}
+.bolt-float {
+  animation: bolt-wiggle 3.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bolt-float { animation: none; }
 }

@@ -14,7 +14,7 @@ Vite + React + TypeScript + Tailwind (Lovable scaffold). Entries go to Supabase.
 Shared Mad Monkey giveaway Supabase project **MM-indo-giveaway** (`bunucgwewziajfbiwnhp`), table `public.stoketober_entries`. Schema in `supabase/schema.sql`.
 
 - `anon` can INSERT only. There is no anon SELECT policy, so the publishable key in `.env` cannot read entries.
-- `authenticated` can SELECT. Sign in to the Supabase dashboard with the shared giveaway admin user to export entries, or query the table directly.
+- `authenticated` can SELECT. The `/admin` page (live: `/partnership/stoketoberfest/2026/admin`) signs in as the shared giveaway admin user `admin@madmonkeyhostels.com` with a password-only login, then lists entries with search, source breakdown, CSV export and a random winner picker. The password lives only in Supabase Auth and is shared with the Siargao and Ha Giang giveaway dashboards.
 - Optional `?src=qr` (or any value) on the URL is stored in the `source` column for attribution.
 
 ## Development

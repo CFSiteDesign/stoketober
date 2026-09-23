@@ -1,9 +1,13 @@
 import Bolt from "@/components/Bolt";
 import EntryForm from "@/components/EntryForm";
+import { asset } from "@/lib/asset";
 
 const Index = () => {
   return (
-    <main className="halftone-bg relative min-h-screen overflow-x-hidden">
+    <main
+      className="halftone-bg relative min-h-screen overflow-x-hidden"
+      style={{ backgroundImage: `url(${asset("bg.jpg")})` }}
+    >
       {/* soft vignette so the panels pop */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[hsl(var(--sky))]/40 via-transparent to-[hsl(var(--ink))]/60" />
 
@@ -17,7 +21,7 @@ const Index = () => {
         {/* Title lockup, lifted straight from the poster */}
         <header className="w-full">
           <img
-            src="/stoketoberfest-title.png"
+            src={asset("stoketoberfest-title.png")}
             alt="Stoketoberfest"
             width={587}
             height={325}
@@ -69,14 +73,14 @@ const Index = () => {
         {/* Footer */}
         <footer className="mt-20 flex w-full flex-col items-center gap-6 text-center text-white sm:mt-24 sm:flex-row sm:items-end sm:justify-between sm:text-left">
           <div className="flex items-center gap-4">
-            <img src="/all-in.png" alt="ALL IN by Mad Monkey" width={96} height={96} className="h-20 w-20 rounded-2xl bg-white p-1 sm:h-24 sm:w-24" loading="lazy" />
+            <img src={asset("all-in.png")} alt="ALL IN by Mad Monkey" width={96} height={96} className="h-20 w-20 rounded-2xl bg-white p-1 sm:h-24 sm:w-24" loading="lazy" />
             <div>
               <p className="text-sm font-extrabold sm:text-base">24+ locations across 6 countries in Southeast Asia.</p>
               <p className="text-sm font-semibold text-white/85 sm:text-base">Social hostels, group trips, tours &amp; experiences.</p>
             </div>
           </div>
           <a href="https://madmonkeyhostels.com" target="_blank" rel="noreferrer" aria-label="Mad Monkey Hostels" className="shrink-0">
-            <img src="/mm-logo.png" alt="Mad Monkey" width={180} height={68} className="h-14 w-auto rounded-xl bg-white px-3 py-1.5 sm:h-16" loading="lazy" />
+            <img src={asset("mm-logo.png")} alt="Mad Monkey" width={180} height={68} className="h-14 w-auto rounded-xl bg-white px-3 py-1.5 sm:h-16" loading="lazy" />
           </a>
         </footer>
       </div>
